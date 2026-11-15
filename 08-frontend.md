@@ -40,7 +40,7 @@ rm -f /etc/nginx/sites-enabled/default
 
 ```shell
 mkdir -p /var/www/fdfs
-curl -o /tmp/frontend.zip https://<ARTIFACTS-BUCKET>.s3.ap-south-1.amazonaws.com/frontend-v1.zip
+curl -o /tmp/frontend.zip https://fdfs-artifacts-30b67175.s3.amazonaws.com/frontend-v1.zip
 cd /var/www/fdfs
 unzip -o /tmp/frontend.zip
 ls

@@ -42,7 +42,7 @@ We build in a temporary folder, not in the folder we run from.
 
 ```shell
 mkdir -p /tmp/payment-service
-curl -o /tmp/payment-service.zip https://<ARTIFACTS-BUCKET>.s3.ap-south-1.amazonaws.com/payment-service-v1.zip
+curl -o /tmp/payment-service.zip https://fdfs-artifacts-30b67175.s3.amazonaws.com/payment-service-v1.zip
 cd /tmp/payment-service
 unzip -o /tmp/payment-service.zip
 ls
@@ -113,6 +113,9 @@ systemctl daemon-reload
 systemctl enable --now fdfs-payment-service
 systemctl status fdfs-payment-service --no-pager
 ```
+
+> **Installing a new version later?** `enable --now` does not restart a service that is already running.
+> After replacing the code, run `systemctl restart fdfs-payment-service`, otherwise the old version keeps running.
 
 ```shell
 curl -s localhost:8003/health

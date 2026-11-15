@@ -40,7 +40,7 @@ mkdir -p /opt/fdfs/booking-service
 ## 4. Download the code
 
 ```shell
-curl -o /tmp/booking-service.zip https://<ARTIFACTS-BUCKET>.s3.ap-south-1.amazonaws.com/booking-service-v1.zip
+curl -o /tmp/booking-service.zip https://fdfs-artifacts-30b67175.s3.amazonaws.com/booking-service-v1.zip
 cd /opt/fdfs/booking-service
 unzip -o /tmp/booking-service.zip
 ls
@@ -126,6 +126,9 @@ systemctl daemon-reload
 systemctl enable --now fdfs-booking-service
 systemctl status fdfs-booking-service --no-pager
 ```
+
+> **Installing a new version later?** `enable --now` does not restart a service that is already running.
+> After replacing the code, run `systemctl restart fdfs-booking-service`, otherwise the old version keeps running.
 
 ```shell
 curl -s localhost:8002/health

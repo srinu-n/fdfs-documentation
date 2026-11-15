@@ -40,7 +40,7 @@ mkdir -p /opt/fdfs/notification-service
 ## 4. Download the code
 
 ```shell
-curl -o /tmp/notification-service.zip https://<ARTIFACTS-BUCKET>.s3.ap-south-1.amazonaws.com/notification-service-v1.zip
+curl -o /tmp/notification-service.zip https://fdfs-artifacts-30b67175.s3.amazonaws.com/notification-service-v1.zip
 cd /opt/fdfs/notification-service
 unzip -o /tmp/notification-service.zip
 ls
@@ -126,6 +126,9 @@ systemctl daemon-reload
 systemctl enable --now fdfs-notification-service
 systemctl status fdfs-notification-service --no-pager
 ```
+
+> **Installing a new version later?** `enable --now` does not restart a service that is already running.
+> After replacing the code, run `systemctl restart fdfs-notification-service`, otherwise the old version keeps running.
 
 ```shell
 curl -s localhost:8004/health

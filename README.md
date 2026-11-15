@@ -89,7 +89,9 @@ Dependencies first, then the services that use them, then the website.
 | `<APP-SERVER-IP>` | Private IP of fdfs-app |
 | `<WEB-SERVER-PUBLIC-IP>` | Public IP of fdfs-web |
 | `<DATA-SERVER-PUBLIC-IP>` | Public IP of fdfs-data (only to open the RabbitMQ UI) |
-| `<ARTIFACTS-BUCKET>` | The S3 bucket that holds the code zips |
+
+The code is downloaded from the public S3 bucket `fdfs-artifacts-30b67175` (version `v1` of every component), for example
+`https://fdfs-artifacts-30b67175.s3.amazonaws.com/movie-service-v1.zip`.
 
 Practice credentials used in these docs: database user `fdfs` / `FdfsPass123`, RabbitMQ user `fdfs` / `FdfsPass123`.
 Use your own passwords for anything beyond practice.

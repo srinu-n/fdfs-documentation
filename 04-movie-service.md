@@ -40,7 +40,7 @@ mkdir -p /opt/fdfs/movie-service
 ## 4. Download the code
 
 ```shell
-curl -o /tmp/movie-service.zip https://<ARTIFACTS-BUCKET>.s3.ap-south-1.amazonaws.com/movie-service-v1.zip
+curl -o /tmp/movie-service.zip https://fdfs-artifacts-30b67175.s3.amazonaws.com/movie-service-v1.zip
 cd /opt/fdfs/movie-service
 unzip -o /tmp/movie-service.zip
 ls
@@ -125,6 +125,9 @@ systemctl daemon-reload
 systemctl enable --now fdfs-movie-service
 systemctl status fdfs-movie-service --no-pager
 ```
+
+> **Installing a new version later?** `enable --now` does not restart a service that is already running.
+> After replacing the code, run `systemctl restart fdfs-movie-service`, otherwise the old version keeps running.
 
 ```shell
 curl -s localhost:8001/health
