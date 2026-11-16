@@ -16,7 +16,7 @@ The app stays the same in every stage. Only the way we deploy it changes.
 | booking-service | app | 8002 | Python (Flask, gunicorn) | Takes bookings, calls movie-service and payment-service, publishes to RabbitMQ |
 | payment-service | app | 8003 | Java 21 (plain Java, built with Maven) | Mock payment, always approves. Internal only |
 | notification-service | app | 8004 | Python (Flask, gunicorn) | Reads booking messages from RabbitMQ, saves and serves notifications |
-| PostgreSQL | data | 5432 | PostgreSQL 16 | Tables: `movies`, `bookings`, `notifications` |
+| PostgreSQL | data | 5432 | PostgreSQL 18 | Tables: `movies`, `bookings`, `notifications` |
 | Redis | data | 6379 | Redis 7 | Caches the movie list |
 | RabbitMQ | data | 5672, 15672 | RabbitMQ 3.12 | Queue `booking.created`, web UI on 15672 |
 

@@ -20,11 +20,13 @@ sudo -i
 
 ## 1. Install PostgreSQL
 
-Ubuntu 24.04 ships PostgreSQL 16.
+Ubuntu 24.04 ships PostgreSQL 16. Add the PostgreSQL Apt repository and install 18.
 
 ```shell
 apt update
-apt install -y postgresql
+apt install -y postgresql-common ca-certificates
+/usr/share/postgresql-common/pgdg/apt.postgresql.org.sh -y
+apt install -y postgresql-18
 ```
 
 ## 2. Listen on the network
@@ -32,8 +34,8 @@ apt install -y postgresql
 By default PostgreSQL only listens on `localhost`. The services run on another server, so it must listen on all interfaces.
 
 ```shell
-sed -i "s/^#listen_addresses = 'localhost'/listen_addresses = '*'/" /etc/postgresql/16/main/postgresql.conf
-grep ^listen_addresses /etc/postgresql/16/main/postgresql.conf
+sed -i "s/^#listen_addresses = 'localhost'/listen_addresses = '*'/" /etc/postgresql/18/main/postgresql.conf
+grep ^listen_addresses /etc/postgresql/18/main/postgresql.conf
 ```
 
 ## 3. Allow the app server to log in
@@ -41,7 +43,7 @@ grep ^listen_addresses /etc/postgresql/16/main/postgresql.conf
 `pg_hba.conf` decides who may connect. Allow only the `fdfs` user, to the `fdfs` database, from the app server.
 
 ```shell
-echo "host    fdfs    fdfs    <APP-SERVER-IP>/32    scram-sha-256" >> /etc/postgresql/16/main/pg_hba.conf
+echo "host    fdfs    fdfs    <APP-SERVER-IP>/32    scram-sha-256" >> /etc/postgresql/18/main/pg_hba.conf
 ```
 
 > Replace `<APP-SERVER-IP>` with the private IP of fdfs-app.
