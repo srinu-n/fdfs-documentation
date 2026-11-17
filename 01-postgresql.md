@@ -40,13 +40,12 @@ grep ^listen_addresses /etc/postgresql/18/main/postgresql.conf
 
 ## 3. Allow the app server to log in
 
-`pg_hba.conf` decides who may connect. Allow only the `fdfs` user, to the `fdfs` database, from the app server.
+`pg_hba.conf` decides who may connect. Allow the `fdfs` user to the `fdfs` database from any address. The security group still limits who can reach port 5432.
 
 ```shell
-echo "host    fdfs    fdfs    <APP-SERVER-IP>/32    scram-sha-256" >> /etc/postgresql/18/main/pg_hba.conf
+echo "host    fdfs    fdfs    0.0.0.0/0    scram-sha-256" >> /etc/postgresql/18/main/pg_hba.conf
 ```
 
-> Replace `<APP-SERVER-IP>` with the private IP of fdfs-app.
 > The security group allows the network path; `pg_hba.conf` decides who may log in. You need both.
 
 ## 4. Restart and enable
